@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Loading from "./Loading";
 import UserCard from "./UserCard";
 
@@ -13,6 +14,16 @@ const UserList = () => {
   // declare state for handling search functionality
   const [searchQuery, setSearchQuery] = useState("");
   const [sortType, setSortType] = useState("");
+
+  const [newUserData, setNewUserData] = useState({
+    image: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    city: "",
+    companyName: "",
+  });
 
   // fetch function
   const fetchData = async () => {
@@ -51,6 +62,48 @@ const UserList = () => {
 
   const handleSort = (e) => {
     setSortType(e.target.value);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewUserData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    const newUser = {
+      id: uuidv4(),
+      image: newUserData.image,
+      firstName: newUserData.firstName,
+      lastName: newUserData.lastName,
+      email: newUserData.email,
+      company: {
+        name: newUserData.companyName,
+      },
+      address: {
+        address: newUserData.address,
+        city: newUserData.city,
+      },
+    };
+    setState((prevState) => ({
+      ...prevState,
+      data: {
+        ...prevState.data,
+        users: [...prevState.data.users, newUser],
+      },
+    }));
+    setNewUserData({
+      image: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      companyName: "",
+      address: "",
+      city: "",
+    });
   };
 
   let filteredUsers = data?.users;
@@ -131,6 +184,75 @@ const UserList = () => {
         {filteredUsers.map((user) => (
           <UserCard key={user.id} user={user} />
         ))}
+      </div>
+
+      {/* add new user */}
+      <div className="mt-4">
+        <h2 className="text-lg font-semibold mb-2">Add New User</h2>
+        <form onSubmit={handleAddUser}>
+          <input
+            type="text"
+            name="image"
+            placeholder="Image"
+            value={newUserData.image}
+            onChange={handleInputChange}
+            required
+          />{" "}
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={newUserData.firstName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={newUserData.lastName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={newUserData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="companyName"
+            placeholder="Company Name"
+            value={newUserData.companyName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="address"
+            placeholder="Address"
+            value={newUserData.address}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="city"
+            placeholder="City"
+            value={newUserData.city}
+            onChange={handleInputChange}
+            required
+          />
+          <button
+            type="submit"
+            className="p-2 px-3 rounded-lg font-medium text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 duration-150 outline-none shadow-md focus:shadow-none sm:px-4"
+          >
+            Add User
+          </button>
+        </form>
       </div>
     </section>
   );

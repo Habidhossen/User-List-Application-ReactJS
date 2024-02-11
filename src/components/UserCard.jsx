@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 const UserCard = ({ user }) => {
-  console.table(user);
-
   const {
     id,
     firstName,
