@@ -47,11 +47,16 @@ const UserList = () => {
   }
 
   return (
-    <div>
-      {data?.users.map((user) => (
-        <UserDetail key={user.id} user={user} />
-      ))}
-    </div>
+    <section>
+      <h1 className="text-2xl text-center font-bold mb-8">
+        User List Application
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {data?.users.map((user) => (
+          <UserDetail key={user.id} user={user} />
+        ))}
+      </div>
+    </section>
   );
 };
 
