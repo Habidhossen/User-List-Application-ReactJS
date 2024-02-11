@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import UserDetail from "./UserDetail";
+import UserCard from "./UserCard";
 
 const UserList = () => {
   // declare state for handling fetch data
@@ -129,7 +129,7 @@ const UserList = () => {
       {/* user lists */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredUsers.map((user) => (
-          <UserDetail key={user.id} user={user} />
+          <UserCard key={user.id} user={user} />
         ))}
       </div>
     </section>
