@@ -139,44 +139,56 @@ const UserList = () => {
   return (
     <section>
       {/* title */}
-      <h1 className="text-2xl text-center font-bold mb-8">
-        User List Application
-      </h1>
+      <div className="flex justify-between">
+        <div>
+          <h1 className="text-2xl text-center font-bold mb-8">
+            User List Application
+          </h1>
+        </div>
 
-      {/* search bar */}
-      <div>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="flex items-center justify-center bg-white rounded-lg p-1 sm:max-w-md sm:mx-auto"
-        >
-          <input
-            type="text"
-            placeholder="Search user"
-            className="text-gray-500 w-full p-2 outline-none"
-            value={searchQuery}
-            onChange={handleSearch}
-          />
-          <button className="p-2 px-3 rounded-lg font-medium text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 duration-150 outline-none shadow-md focus:shadow-none sm:px-4">
-            Search
+        <div>
+          <button className="px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-lg hover:bg-purple-500 duration-300">
+            Add User
           </button>
-        </form>
+        </div>
       </div>
 
-      {/* sort */}
-      <div className="flex items-center gap-2">
-        <span className="text-sm font-semibold">Sort: </span>
-        <select
-          className="select select-bordered w-full max-w-xs"
-          onChange={handleSort}
-          value={sortType}
-        >
-          <option disabled selected>
-            Select type
-          </option>
-          <option value="name">Name</option>
-          <option value="email">Email</option>
-          <option value="company">Company</option>
-        </select>
+      <div className="flex justify-center gap-4 mb-8">
+        {/* sort */}
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-semibold">Sort By: </span>
+          <select
+            className="p-3 outline-none rounded-lg text-sm "
+            onChange={handleSort}
+            value={sortType}
+          >
+            <option disabled selected>
+              Select type
+            </option>
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="company">Company</option>
+          </select>
+        </div>
+
+        {/* search bar */}
+        <div>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex items-center justify-center bg-white rounded-lg p-1"
+          >
+            <input
+              type="text"
+              placeholder="Search user"
+              className="text-gray-500 p-2 outline-none"
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+            <button className="px-4 py-2 bg-purple-600 text-white text-sm font-semibold rounded-lg hover:bg-purple-500 duration-300">
+              Search
+            </button>
+          </form>
+        </div>
       </div>
 
       {/* user lists */}

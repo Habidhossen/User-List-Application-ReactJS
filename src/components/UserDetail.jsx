@@ -54,21 +54,23 @@ const UserDetail = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white p-4 rounded-lg shadow-sm">
-      <img
-        src={data?.image}
-        alt={data?.firstName}
-        className="h-96 w-96 px-4 pt-4"
-      />
-      <div className="mt-6">
-        <h1 className="text-lg font-semibold">
-          {data?.firstName + " " + data?.lastName}
-        </h1>
-        <p>Email: {data?.email}</p>
-        <p>Address: {data?.address?.address + ", " + data?.address?.city}</p>
-        <p>Company Name: {data?.company?.name}</p>
+    <section className="h-screen flex items-center justify-center">
+      <div className="flex flex-col bg-white p-4 rounded-lg shadow-sm">
+        <img
+          src={data?.image}
+          alt={data?.firstName}
+          className="h-96 w-96 px-4 pt-4"
+        />
+        <div className="mt-6">
+          <h1 className="text-lg font-semibold">
+            {data?.firstName + " " + data?.lastName}
+          </h1>
+          <p>Email: {data?.email}</p>
+          <p>Address: {data?.address?.address + ", " + data?.address?.city}</p>
+          <p>Company Name: {data?.company?.name}</p>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
